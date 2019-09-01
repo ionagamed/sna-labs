@@ -13,7 +13,10 @@ def run_and_check(command: str):
     process = subprocess.run(command, stdout=subprocess.PIPE, shell=True)
     process.check_returncode()
 
-    print(process.stdout.decode("utf-8"))
+    try:
+        print(process.stdout.decode("utf-8"))
+    except:  # docker ps may output something UNUSUAL
+        print(process.stdout)
 
     return process.stdout
 
