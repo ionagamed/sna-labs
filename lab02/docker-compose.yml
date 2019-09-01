@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  ssh:
+    image: rastasheep/ubuntu-sshd:18.04
+    command: /usr/sbin/sshd -D -E /var/log/sshd
+    ports:
+      - "31338:22"
+    networks:
+      - br_default
+      - br_internal
+    volumes:
+      - ./sshd_config:/etc/ssh/sshd_config
+
+  wiki:
+    image: mediawiki:1.33.0
+    networks:
+      - br_internal
+    volumes:
+      - ./data:/var/www/data
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+
+networks:
+  br_default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/27
+  br_internal:
+    internal: true
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.237.0/27
