@@ -50,6 +50,9 @@ def configure_sshd():
     run_and_check("docker exec lygin_sna_lab_ssh_1 chmod 400 /root/.ssh/authorized_keys")
     run_and_check("docker exec lygin_sna_lab_ssh_1 chown root:root /root/.ssh/authorized_keys")
 
+    # fixing permissions on local key
+    run_and_check("chmod 400 ./example_keypair")
+
 
 def main():
     # checking docker version and existence on the target machine
