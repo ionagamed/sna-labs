@@ -12,13 +12,23 @@ services:
     volumes:
       - ./sshd_config:/etc/ssh/sshd_config
 
-  wiki:
-    image: mediawiki:1.33.0
+  hackmd:
+    image: hackmdio/hackmd:1.2.0
+    environment:
+      HMD_DB_URL: postgres://hackmd:hackmdpass@postgres:5432/hackmd
+    networks:
+      - br_internal
+
+  postgres:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER=hackmd
+      - POSTGRES_PASSWORD=hackmdpass
+      - POSTGRES_DB=hackmd
     networks:
       - br_internal
     volumes:
-      - ./data:/var/www/data
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./postgres-data:/var/lib/postgresql/data
 
 networks:
   br_default:
