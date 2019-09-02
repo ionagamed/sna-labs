@@ -69,7 +69,7 @@ def main():
     run_and_check("curl https://raw.githubusercontent.com/hackmdio/docker-hackmd/master/debian/Dockerfile")
 
     # unzip postgres-data (it is not kept in the repo as-is, because of the empty dirs)
-    run_and_check("if [[ ! -e postgres-data ]] unzip postgres-data.zip;")
+    run_and_check("if [[ ! -e postgres-data ]] then unzip postgres-data.zip; fi")
 
     # upping the containers and creating networks (defined in docker-compose.yml)
     run_and_check("docker-compose -p lygin_sna_lab up -d")
