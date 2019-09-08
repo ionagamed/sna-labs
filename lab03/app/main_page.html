@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <title>SNA lab main page lmao</title>
+</head>
+<body>
+<h3>hello, world</h3>
+<p>Current time from WS is: <span id="ws-time"></span></p>
+<script>
+    const socket = new WebSocket("ws://" + window.location.host + "/ws");
+
+    socket.addEventListener("message", function (event) {
+        const payload = JSON.parse(event.data);
+        const target = document.getElementById("ws-time");
+        target.innerHTML = payload["now"];
+    });
+
+    const updateTime = function() {
+        socket.send(JSON.stringify({action: "whatever"}))
+    };
+    setInterval(updateTime, 700);
+</script>
+</body>
+</html>

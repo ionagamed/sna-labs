@@ -1,0 +1,2 @@
+loguru==0.3.0
+aiohttp==3.6.0
