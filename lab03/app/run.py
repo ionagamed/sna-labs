@@ -42,7 +42,7 @@ def main():
         web.get("/ws", get_current_time_ws)
     ])
 
-    web.run_app(app, host="localhost", port=9000)
+    web.run_app(app, host="0.0.0.0", port=9000)
 
 
 if __name__ == '__main__':
