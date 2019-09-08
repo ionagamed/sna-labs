@@ -6,7 +6,8 @@
 <h3>hello, world</h3>
 <p>Current time from WS is: <span id="ws-time"></span></p>
 <script>
-    const socket = new WebSocket("ws://" + window.location.host + "/ws");
+    const prefix = window.location.protocol === "https:" ? "wss" : "ws";
+    const socket = new WebSocket(prefix + "://" + window.location.host + "/ws");
 
     socket.addEventListener("message", function (event) {
         const payload = JSON.parse(event.data);
