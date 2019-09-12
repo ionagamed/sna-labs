@@ -188,7 +188,7 @@ Sep  9 11:59:01 ip-172-31-40-194 sm-mta[7423]: STARTTLS=client, relay=gmail-smtp
 Sep  9 11:59:01 ip-172-31-40-194 sm-mta[7423]: x89Bx1iP007421: to=<ionagamed@gmail.com>, ctladdr=<root@ip-172-31-40-194.eu-central-1.compute.internal> (0/0), delay=00:00:00, xdelay=00:00:00, mailer=esmtp, pri=120746, relay=gmail-smtp-in.l.google.com. [173.194.76.26], dsn=2.0.0, stat=Sent (OK  1568030341 g8si13213396wrh.408 - gsmtp)
 ```
 
-# Task 5 - FTPD
+## Task 5 - FTPD
 
 At first I wanted to use docker, but network setup with manual NAT turned out to be a hassle, so this is done on two separate machines (shell commands have a "fake" hostname). `m1` would be the "internet" machine, and `m2` would run in the DMZ.
 
